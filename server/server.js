@@ -13,15 +13,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
-
+app.use(routes);
 // the __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, '../build')));
-app.use('api', routes);
+
 //sends index to url request 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
+
 app.listen(port);
 
 
@@ -30,3 +31,5 @@ mongoose.connect("mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/holup?
 .then(() => console.log('Connected to MongoDB Atlas on ' + port))
 .catch(err => console.log(err))
 
+
+// app.use('api', routes);
