@@ -29,7 +29,7 @@ app.listen(port);
 //mongoose DB Atlas 
 mongoose.connect("mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/holup?retryWrites=true&w=majority", { useNewUrlParser: true })
 .then(() => console.log('Connected to MongoDB Atlas on ' + port))
-.catch(err => console.log(err))
+.catch(err => console.log(err));
 
 
 // app.use('api', routes);
