@@ -1,22 +1,15 @@
 import './Style.css';
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import Jumbo from './Jumbotron/Jumbo.js'
+import Content from './Content/Content'
 
 export default class Home extends Component {
     render() {
         return (
-            <Container>
+            <Container id="content">
                 <Jumbo/>
-                <Row>
-                    <Col></Col>
-                </Row>
-                <Row>
-                    <Col>test</Col>
-                </Row>
-                <Row>
-                    <Col></Col>
-                </Row>
+                <Content /> 
             </Container>
         )
     }

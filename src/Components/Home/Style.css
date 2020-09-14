@@ -1,3 +1,9 @@
-Col {
-    border: 1px black solid;
+
+#content {
+    border: dashed red;
 }
+
+.line {
+    border: dashed black;
+}
+
