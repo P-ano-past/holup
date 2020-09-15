@@ -45,7 +45,7 @@ export default class Waitlist extends Component {
 
     handleSubmit = event => {
         
-        alert('This info should be sent to mongo: ' + this.state.firstName);
+        alert('This info should be sent to mongo: ' + this.state.firstName + ' ' + this.state.lastName + ' ' + this.state.email + ' ' + this.state.phone);
         
         console.log(this.state.firstName, this.state.lastName, this.state.phone, this.state.email)
         event.preventDefault();
