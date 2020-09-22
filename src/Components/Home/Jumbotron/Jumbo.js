@@ -4,6 +4,20 @@ import { Jumbotron, Button, InputGroup, FormControl, Modal, Row, Col, Form } fro
 import './Jumbo.css';
 import Clock from '../../Clock/Clock';
 
+
+const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+);
+
+const validPhoneRegex = RegExp(
+    /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i
+)
+const validateForm = errors => {
+    let valid = true;
+    Object.values(errors).forEach(val => val.length > 0 && (valid = false));
+    return valid;
+};
+
 export default class Jumbo extends Component {
 
     constructor(props) {
@@ -13,89 +27,59 @@ export default class Jumbo extends Component {
             lastName: '',
             email: '',
             phone: '',
-            time: '',
-            show: false,
-            firstNameError: '',
-            lastNameError: '',
-            emailError: '',
-            phoneError: '',
-            validated: false
+            errors: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+            }
         };
-
-        this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-        this.handleLastNameChange = this.handleLastNameChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePhoneChange = this.handlePhoneChange.bind(this);
-        this.handleTimeChange = this.handleTimeChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleValidate = this.handleValidate.bind(this);
     }
-
-    handleFirstNameChange = event => {
-        this.setState(
-            {
-                firstName: event.target.value
-            });
-    }
-    handleLastNameChange = event => {
-        this.setState(
-            {
-                lastName: event.target.value
-            });
-    }
-    handleEmailChange = event => {
-        this.setState(
-            {
-                email: event.target.value
-            });
-    }
-    handlePhoneChange = event => {
-        this.setState(
-            {
-                phone: event.target.value
-            });
-    }
-    handleTimeChange = event => {
-        this.setState(
-            {
-                time: event.target.value
-            });
-    }
-
-    handleValidate = () => {
-        // let firstNameError = "";
-        // let lastNameError = "";
-        let emailError = "";
-        // let phoneError = "";
-
-        if (!this.state.email.includes('@')) {
-            emailError = 'Invalid email';
-        }
-        if (emailError) {
-            this.setState({emailError});
-                return false;
-        }
-        return true;
-    }
-
-    handleSubmit = event => {
+    handleChange = (event) => {
         event.preventDefault();
-        event.stopPropagation();
-        const isValid = this.validate();
-
-        if (isValid) {
-            console.log(this.state);
-            this.setState(this.state)
+        const { name, value } = event.target;
+        let errors = this.state.errors;
+    
+        switch (name) {
+          case 'firstName': 
+            errors.firstName = 
+              value.length < 3
+                ? 'First name must be at least 3 characters long!'
+                : '';
+            break;
+          case 'lastName': 
+            errors.lastName = 
+              value.length < 3
+                ? 'Last name must be at least 3 characters long!'
+                : '';
+            break;
+          case 'email': 
+            errors.email = 
+              validEmailRegex.test(value)
+                ? ''
+                : 'Email is not valid!';
+            break;
+          case 'phone': 
+            errors.phone = 
+              validPhoneRegex.test(value)
+                ? ''
+                : 'Invalid phone number';
+            break;
+          default:
+            break;
         }
-
-        // alert('This info should be sent to mongo: First name: ' + this.state.firstName + ' last name: ' + this.state.lastName + ' Email: ' + this.state.email + ' Phone: ' + this.state.phone + ' Time submitted: ' + this.state.time);
-        
-        console.log(this.state.firstName, this.state.lastName, this.state.phone, this.state.email)
-        // setValidated(true);
+    
+        this.setState({errors, [name]: value});
     }
-
+    
+    handleSubmit = (event) => {
+        event.preventDefault();
+        if(validateForm(this.state.errors)) {
+        console.info('Valid Form')
+        }else{
+        console.error('Invalid Form')
+        }
+    }
     handleShow = event => {
         this.setState({show: true})
     }
@@ -109,6 +93,7 @@ export default class Jumbo extends Component {
 
 
     render() {
+        const {errors} = this.state; 
         return (
             <Jumbotron>
                 <h1 className="display-4">Holup</h1>
@@ -122,56 +107,74 @@ export default class Jumbo extends Component {
                         </Modal.Header>
                         <Row>
                             <Col>
-                            <Form noValidate onSubmit={this.handleSubmit}>
+                            <Form onSubmit={this.handleSubmit} noValidate>
                                 <br/>
                                 <InputGroup size="lg">
                                     <FormControl 
                                     placeholder="First name:"
                                     type="text"
+                                    name='firstName'
                                     aria-label="Large" 
                                     aria-describedby="inputGroup-sizing-sm" 
                                     value={this.state.firstName} 
-                                    onChange={this.handleFirstNameChange}
-                                    required
-                                        />
+                                    onChange={this.handleChange}
+                                    noValidate
+                                    />
+                                    {
+                                    errors.firstName.length > 0 &&
+                                    <span className="error">{errors.firstName}</span>
+                                    }
                                 </InputGroup>
                                 <br/>
                                  <InputGroup size="lg">
                                     <FormControl 
                                     placeholder="Last name:"
                                     type="text"
+                                    name="lastName"
                                     aria-label="Large" 
                                     aria-describedby="inputGroup-sizing-sm" 
                                     value={this.state.lastName} 
-                                    onChange={this.handleLastNameChange}
+                                    onChange={this.handleChange}
                                     required
                                     />
+                                    {
+                                    errors.lastName.length > 0 &&
+                                    <span className="error">{errors.lastName}</span>
+                                    }
                                 </InputGroup>
                                 <br/>
                                 <InputGroup size="lg">
                                     <FormControl 
                                     placeholder="Email:"
                                     type="email"
+                                    name="email"
                                     aria-label="Large" 
                                     aria-describedby="inputGroup-sizing-sm" 
                                     value={this.state.email} 
-                                    onChange={this.handleEmailChange}
+                                    onChange={this.handleChange}
                                     pattern=".+@globex.com"
                                     required
                                     />
+                                    {
+                                    errors.email.length > 0 && 
+                                    <span className='error'>{errors.email}</span>
+                                    }
                                 </InputGroup>
                                 <br/>
                                 <InputGroup size="lg">
                                     <FormControl 
                                     placeholder="Phone:"
                                     type="tel"
+                                    name="phone"
                                     aria-label="Large" 
                                     aria-describedby="inputGroup-sizing-sm" 
                                     value={this.state.phone} 
-                                    onChange={this.handlePhoneChange}
+                                    onChange={this.handleChange}
                                     pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                                     required
                                     />
+                                    {errors.phone.length > 0 && 
+                                    <span className='error'>{errors.phone}</span>}
                                 </InputGroup>
                                 <br/>
                                 <Modal.Footer>
