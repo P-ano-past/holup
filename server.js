@@ -15,7 +15,7 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port);
-console.log('listening @: localhost:' + port)
+
 
 
 //add: add to start script in package.json
@@ -24,4 +24,3 @@ console.log('listening @: localhost:' + port)
 
 
     //took out 'build' lin 14
-    

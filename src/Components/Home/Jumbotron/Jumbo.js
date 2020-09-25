@@ -6,11 +6,12 @@ import Clock from '../../Clock/Clock';
 
 
 const validEmailRegex = RegExp(
-    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    // eslint-disable-next-line
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 );
 
 const validPhoneRegex = RegExp(
-    /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i
+    /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
 )
 const validateForm = errors => {
     let valid = true;
@@ -34,7 +35,9 @@ export default class Jumbo extends Component {
                 phone: '',
             }
         };
+        this.wrapper = React.createRef();
     }
+
     handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
@@ -63,34 +66,36 @@ export default class Jumbo extends Component {
             errors.phone = 
               validPhoneRegex.test(value)
                 ? ''
-                : 'Invalid phone number';
+                : 'Phone number is not valid!';
             break;
           default:
             break;
         }
-    
         this.setState({errors, [name]: value});
     }
     
     handleSubmit = (event) => {
         event.preventDefault();
         if(validateForm(this.state.errors)) {
-        console.info('Valid Form')
+            console.log(this.state)
+            this.setState({
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+            })
         }else{
-        console.error('Invalid Form')
+            console.error('Invalid Form')
+            this.handleShow()
         }
     }
-    handleShow = event => {
+    handleShow = (event) => {
         this.setState({show: true})
     }
 
-    handleClose = event => {
+    handleClose = (event) => {
         this.setState({show: false})
-        console.log("this should close.")
     }
-
-
-
 
     render() {
         const {errors} = this.state; 
@@ -100,8 +105,14 @@ export default class Jumbo extends Component {
                 <hr className="my-4"/>
                 <p className="lead">Please feel free to check-in and you will be notified once you are ready.</p>
                 <h2 className="time">Current time: <Clock /></h2>
-                <Button onClick={this.handleShow}>Check-In</Button>
-                <Modal className="custom_modal" show={this.state.show} onHide={this.handleClose}>
+                <Button onClick={this.handleShow} >Check-In</Button>
+                <Modal 
+                    className="custom_modal" 
+                    show={this.state.show} 
+                    onHide={this.handleClose}
+                    ref={this.wrapper}
+                    >
+                        {this.props.children}
                         <Modal.Header closeButton={this.handleClose}>
                             <Modal.Title>Check-In here!</Modal.Title>
                         </Modal.Header>
@@ -115,7 +126,7 @@ export default class Jumbo extends Component {
                                     type="text"
                                     name='firstName'
                                     aria-label="Large" 
-                                    aria-describedby="inputGroup-sizing-sm" 
+                                    aria-describedby="inputGroup-sizing-sm"
                                     value={this.state.firstName} 
                                     onChange={this.handleChange}
                                     noValidate
@@ -132,7 +143,7 @@ export default class Jumbo extends Component {
                                     type="text"
                                     name="lastName"
                                     aria-label="Large" 
-                                    aria-describedby="inputGroup-sizing-sm" 
+                                    aria-describedby="inputGroup-sizing-sm"
                                     value={this.state.lastName} 
                                     onChange={this.handleChange}
                                     required
@@ -149,7 +160,7 @@ export default class Jumbo extends Component {
                                     type="email"
                                     name="email"
                                     aria-label="Large" 
-                                    aria-describedby="inputGroup-sizing-sm" 
+                                    aria-describedby="inputGroup-sizing-sm"
                                     value={this.state.email} 
                                     onChange={this.handleChange}
                                     pattern=".+@globex.com"
@@ -167,7 +178,7 @@ export default class Jumbo extends Component {
                                     type="tel"
                                     name="phone"
                                     aria-label="Large" 
-                                    aria-describedby="inputGroup-sizing-sm" 
+                                    aria-describedby="inputGroup-sizing-sm"
                                     value={this.state.phone} 
                                     onChange={this.handleChange}
                                     pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
@@ -178,7 +189,7 @@ export default class Jumbo extends Component {
                                 </InputGroup>
                                 <br/>
                                 <Modal.Footer>
-                                <Button type="submit" onClick={ this.handleClose }>Submit</Button>
+                                    <Button type="submit" onClick={ this.handleClose }>Submit</Button>
                                 </Modal.Footer>
                             </Form>
                             </Col>
@@ -189,4 +200,4 @@ export default class Jumbo extends Component {
     }
 }
 
-// turn the button into a component that displays modal. 
+// auto focus on first name, enter button into next section. 

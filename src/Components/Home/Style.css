@@ -7,3 +7,7 @@
     border: dashed black;
 }
 
+#contContainer {
+    background-color: aliceblue;
+    height: 100%;
+}
