@@ -1,5 +1,6 @@
 const express = require('express');
 // const favicon = require('express-favicon');
+const cors = require('cors');
 const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -11,6 +12,7 @@ const bodyParser = require('body-parser');
 // the __dirname is the current directory from where the script is running
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
+app.use(cors());
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/ping', function (req, res) {
@@ -40,5 +42,5 @@ app.get('*', (req, res) => {
     // took out 'build' lin 14
 
 
-    
+
 

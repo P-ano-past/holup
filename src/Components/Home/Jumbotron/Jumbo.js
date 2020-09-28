@@ -91,7 +91,6 @@ export default class Jumbo extends Component {
         email: this.state.email,
         phone: this.state.phone,
       });
-      console.log(PORT);
 
       this.setState({
         firstName: "",
