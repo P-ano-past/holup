@@ -3,6 +3,7 @@ import './Jumbo.css'
 import { Jumbotron, Button, InputGroup, FormControl, Modal, Row, Col, Form } from 'react-bootstrap';
 import './Jumbo.css';
 import Clock from '../../Clock/Clock';
+import axios from 'axios';
 
 
 const validEmailRegex = RegExp(
@@ -28,6 +29,7 @@ export default class Jumbo extends Component {
             lastName: '',
             email: '',
             phone: '',
+            // time: '',
             errors: {
                 firstName: '',
                 lastName: '',
@@ -76,15 +78,22 @@ export default class Jumbo extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log(this.state)
         if(validateForm(this.state.errors)) {
-            console.log(this.state)
+            axios.post('http://localhost:8080/api/user', { 
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                phone: this.state.phone
+            })
+
             this.setState({
                 firstName: '',
                 lastName: '',
                 email: '',
                 phone: '',
             })
-        }else{
+        } else {
             console.error('Invalid Form')
             this.handleShow()
         }
