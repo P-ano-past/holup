@@ -1,7 +1,7 @@
 const express = require('express');
 // const favicon = require('express-favicon');
 const path = require('path');
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
 const routes = require('./server/routes/index');

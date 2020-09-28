@@ -5,6 +5,7 @@ import './Jumbo.css';
 import Clock from '../../Clock/Clock';
 import axios from 'axios';
 
+const PORT = process.env.PORT || 3001;
 
 const validEmailRegex = RegExp(
     // eslint-disable-next-line
@@ -80,7 +81,7 @@ export default class Jumbo extends Component {
         event.preventDefault();
         console.log(this.state)
         if(validateForm(this.state.errors)) {
-            axios.post('http://localhost:8080/api/user', { 
+            axios.post('http://localhost:'+ PORT + '/api/user', { 
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 email: this.state.email,
