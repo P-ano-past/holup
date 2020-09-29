@@ -83,12 +83,12 @@ export default class Jumbo extends Component {
     event.preventDefault();
     console.log(this.state);
     if (validateForm(this.state.errors)) {
-      axios.post("/api/user", {
+      axios.post("/api/user", JSON.stringify({
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
         phone: this.state.phone,
-      })
+      }))
       .then(res => {
         console.log(res)
       })
