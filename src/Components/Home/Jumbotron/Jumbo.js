@@ -28,8 +28,6 @@ const validateForm = (errors) => {
   return valid;
 };
 
-console.log(PORT)
-
 export default class Jumbo extends Component {
   constructor(props) {
     super(props);
