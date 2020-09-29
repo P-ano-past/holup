@@ -14,8 +14,6 @@ import "./Jumbo.css";
 import Clock from "../../Clock/Clock";
 import axios from "axios";
 
-const PORT = process.env.PORT || 3001;
-
 const validEmailRegex = RegExp(
   // eslint-disable-next-line
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -87,7 +85,7 @@ export default class Jumbo extends Component {
     event.preventDefault();
     console.log(this.state);
     if (validateForm(this.state.errors)) {
-      axios.post("http://localhost:" + PORT + "/api/user", {
+      axios.post("http://localhost:3001/api/user", {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
