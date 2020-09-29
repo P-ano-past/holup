@@ -83,7 +83,7 @@ export default class Jumbo extends Component {
     event.preventDefault();
     console.log(this.state);
     if (validateForm(this.state.errors)) {
-      axios.post("http://localhost:3001/api/user", {
+      axios.post("api/user", {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
