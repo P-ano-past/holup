@@ -33,7 +33,7 @@ mongoose.connect('mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/Queue?
 
 
 //renders home page
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
