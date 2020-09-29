@@ -93,6 +93,7 @@ export default class Jumbo extends Component {
       })
       .then(res => {
         console.log(res)
+        console.log(PORT)
       })
       .catch(err => {
         console.log(err)
