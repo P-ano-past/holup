@@ -8,6 +8,10 @@ const mongoose = require('mongoose');
 const routes = require('./server/routes/index');
 const bodyParser = require('body-parser');
 
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
+
 // app.use(favicon(__dirname + '/build/favicon.ico'));
 // the __dirname is the current directory from where the script is running
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,10 +21,6 @@ app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/ping', function (req, res) {
  return res.send('pong');
-});
-
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
 app.use(routes);
