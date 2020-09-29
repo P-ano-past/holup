@@ -23,12 +23,14 @@ app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
+app.use(routes);
+
+
 //Connect to MongoDB Atlas
 mongoose.connect('mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/Queue?retryWrites=true&w=majority', { useNewUrlParser: true })
 .then(()=> console.log('Connected to MongoDB Atlas on ' + PORT))
 .catch(err => console.log(err));
 
-app.use(routes);
 
 //renders home page
 app.get('*', (req, res) => {
