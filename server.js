@@ -24,7 +24,7 @@ app.listen(PORT, function() {
 });
 
 //Connect to MongoDB Atlas
-mongoose.connect("mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/Queue?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect('mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/Queue?retryWrites=true&w=majority', { useNewUrlParser: true })
 .then(()=> console.log('Connected to MongoDB Atlas on ' + PORT))
 .catch(err => console.log(err));
 
