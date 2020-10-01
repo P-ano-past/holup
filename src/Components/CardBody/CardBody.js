@@ -20,18 +20,16 @@ export default class CardBody extends Component {
       });
   }
 
-  handleDelete(id, e) {
+  handleDelete(_id, e) {
     console.log("clicked");
+    console.log(_id);
     axios
-      .delete(`/api/user/${id}`)
+      .delete(`/api/user/${_id}`)
       .then((res) => {
         console.log(res);
         console.log(res.data);
 
-        const users = this.state.users.filter((item) => item.id !== id);
-        this.setState({ users });
-
-        // const users = res.data;
+        // const users = this.state.users.filter((item) => item._id !== _id);
         // this.setState({ users });
       })
       .catch((error) => {
@@ -52,8 +50,8 @@ export default class CardBody extends Component {
                 <Button
                   className="deleteBtn"
                   type="delete"
-                  id={users.id}
-                  onClick={(e) => this.handleDelete(users.id, e)}
+                  id={users._id}
+                  onClick={(e) => this.handleDelete(users._id, e)}
                 >
                   X
                 </Button>
