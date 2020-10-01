@@ -37,7 +37,6 @@ export default class Jumbo extends Component {
       email: "",
       phone: "",
       time: "",
-      id: 0,
       errors: {
         firstName: "",
         lastName: "",
@@ -56,23 +55,23 @@ export default class Jumbo extends Component {
     switch (name) {
       case "firstName":
         errors.firstName =
-          value.length < 3
+          value.length < 3 || ""
             ? "First name must be at least 3 characters long!"
             : "";
         break;
       case "lastName":
         errors.lastName =
-          value.length < 3
+          value.length < 3 || ""
             ? "Last name must be at least 3 characters long!"
             : "";
         break;
       case "email":
-        errors.email = validEmailRegex.test(value) ? "" : "Email is not valid!";
+        errors.email =
+          validEmailRegex.test(value) || "" ? "" : "Email is not valid!";
         break;
       case "phone":
-        errors.phone = validPhoneRegex.test(value)
-          ? ""
-          : "Phone number is not valid!";
+        errors.phone =
+          validPhoneRegex.test(value) || "" ? "" : "Phone number is not valid!";
         break;
       default:
         break;
@@ -88,7 +87,6 @@ export default class Jumbo extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    this.handleIncrement();
     if (validateForm(this.state.errors)) {
       axios
         .post("/api/user", {
@@ -115,6 +113,7 @@ export default class Jumbo extends Component {
       console.error("Invalid Form");
       this.handleShow();
     }
+    window.location.reload(false);
   };
   handleShow = (event) => {
     this.setState({ show: true });

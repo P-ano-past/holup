@@ -31,6 +31,7 @@ export default class CardBody extends Component {
       .catch((error) => {
         console.error("Error:", error);
       });
+    window.location.reload(false);
   }
 
   render() {
