@@ -21,8 +21,7 @@ export default class CardBody extends Component {
   }
 
   handleDelete(_id, e) {
-    console.log("clicked");
-    console.log(_id);
+    e.preventDefault();
     axios
       .delete(`/api/user/${_id}`)
       .then((res) => {
