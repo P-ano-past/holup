@@ -130,8 +130,7 @@ export default class Jumbo extends Component {
         <h1 className="display-4">Holup</h1>
         <hr className="my-4" />
         <p className="lead">
-          Please feel free to check-in and you will be notified once you are
-          ready.
+          Please feel free to check-in and you will be notified soon!
         </p>
         <h2 className="time">
           Current time: <Clock />
