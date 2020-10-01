@@ -1,10 +1,10 @@
-const router = require('express').Router();
-const { findAll, createUser } = require('../../controllers/userController');
+const router = require("express").Router();
+const {
+  findAll,
+  createUser,
+  remove,
+} = require("../../controllers/userController");
 
-
-router.route('/')
-.get(findAll)
-.post(createUser)
-
+router.route("/").get(findAll).post(createUser).delete(remove);
 
 module.exports = router;

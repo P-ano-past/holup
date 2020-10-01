@@ -37,6 +37,7 @@ export default class Jumbo extends Component {
       email: "",
       phone: "",
       time: "",
+      id: 0,
       errors: {
         firstName: "",
         lastName: "",
@@ -79,9 +80,15 @@ export default class Jumbo extends Component {
     this.setState({ errors, [name]: value });
   };
 
+  handleIncrement = (event) => {
+    this.props.value = 1;
+    this.setState({ id: this.state.id + 1 });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
+    this.handleIncrement();
     if (validateForm(this.state.errors)) {
       axios
         .post("/api/user", {
@@ -89,6 +96,7 @@ export default class Jumbo extends Component {
           lastName: this.state.lastName,
           email: this.state.email,
           phone: this.state.phone,
+          id: this.state.id,
         })
         .then((res) => {
           console.log(res);
