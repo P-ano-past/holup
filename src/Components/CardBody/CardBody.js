@@ -28,9 +28,6 @@ export default class CardBody extends Component {
       .then((res) => {
         console.log(res);
         console.log(res.data);
-
-        // const users = this.state.users.filter((item) => item._id !== _id);
-        // this.setState({ users });
       })
       .catch((error) => {
         console.error("Error:", error);

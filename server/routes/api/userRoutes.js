@@ -5,6 +5,7 @@ const {
   remove,
 } = require("../../controllers/userController");
 
-router.route("/").get(findAll).post(createUser).delete(remove);
+router.route("/").get(findAll).post(createUser);
 
+router.route("/:id").delete(remove);
 module.exports = router;
