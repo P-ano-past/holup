@@ -94,7 +94,6 @@ export default class Jumbo extends Component {
           lastName: this.state.lastName,
           email: this.state.email,
           phone: this.state.phone,
-          id: this.state.id,
         })
         .then((res) => {
           console.log(res);

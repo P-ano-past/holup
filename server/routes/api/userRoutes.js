@@ -3,9 +3,11 @@ const {
   findAll,
   createUser,
   remove,
+  update,
+  findById,
 } = require("../../controllers/userController");
 
 router.route("/").get(findAll).post(createUser);
 
-router.route("/:id").delete(remove);
+router.route("/:id").delete(remove).put(update).get(findById);
 module.exports = router;

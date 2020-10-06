@@ -26,10 +26,11 @@ app.get("/ping", function (req, res) {
 app.use(routes);
 
 //Connect to MongoDB Atlas
+
 mongoose
   .connect(
     "mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/Queue?retryWrites=true&w=majority",
-    { useNewUrlParser: true }
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
   )
   .then(() => console.log("Connected to MongoDB Atlas on " + PORT))
   .catch((err) => console.log(err));
