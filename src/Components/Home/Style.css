@@ -1,13 +1,10 @@
-
-#content {
-    border: dashed red;
-}
-
-.line {
-    border: dashed black;
-}
-
 #contContainer {
-    background-color: aliceblue;
-    height: 100%;
+  background-color: aliceblue;
+  height: 100%;
+  border-radius: 5px;
+}
+
+#cont1 {
+  border-radius: 5px;
+  padding: 10px;
 }

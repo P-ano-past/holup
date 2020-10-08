@@ -161,9 +161,9 @@ export default class CardBody extends Component {
     return (
       <>
         <Card>
-          <Card.Body>
-            {this.state.users.map((users) => (
-              <ListGroup>
+          <Card.Body scrollable={true}>
+            <ListGroup>
+              {this.state.users.map((users) => (
                 <ListGroupItem>
                   {users.firstName} &ensp;
                   {users.lastName} &ensp;
@@ -188,8 +188,8 @@ export default class CardBody extends Component {
                     Edit
                   </Button>
                 </ListGroupItem>
-              </ListGroup>
-            ))}
+              ))}
+            </ListGroup>
           </Card.Body>
         </Card>
         <Modal
