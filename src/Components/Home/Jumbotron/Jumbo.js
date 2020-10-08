@@ -36,7 +36,6 @@ export default class Jumbo extends Component {
       lastName: "",
       email: "",
       phone: "",
-      time: "",
       errors: {
         firstName: "",
         lastName: "",
@@ -136,7 +135,9 @@ export default class Jumbo extends Component {
         <h2 className="time">
           Current time: <Clock />
         </h2>
-        <Button onClick={this.handleShow}>Check-In</Button>
+        <Button className="checkinBtn" onClick={this.handleShow}>
+          Check-In
+        </Button>
         <Modal
           className="custom_modal"
           show={this.state.show}

@@ -1,6 +1,8 @@
 #root {
-  background-color: grey;
+  background-color: rgb(73, 106, 129);
+  height: 100%;
 }
+
 .whole {
-  background-color: grey;
+  background-color: rgb(73, 106, 129);
 }
