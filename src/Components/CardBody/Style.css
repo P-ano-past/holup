@@ -5,6 +5,7 @@
 
 .editBtn {
   float: right;
+  border-radius: 24px;
 }
 
 .list-group {

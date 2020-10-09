@@ -24,7 +24,7 @@ export default class Clock extends Component {
     return (
       <p className="clock">
         {this.state.date.toLocaleTimeString([], {
-          hour: "2-digit",
+          hour: "numeric",
           minute: "2-digit",
         })}
       </p>

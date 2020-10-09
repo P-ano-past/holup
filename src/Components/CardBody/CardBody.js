@@ -83,10 +83,11 @@ export default class CardBody extends Component {
       });
   }
 
-  handleDelete(_id, e) {
+  handleDelete = (e) => {
     e.preventDefault();
+    console.log(this.state._id);
     axios
-      .delete(`/api/user/${_id}`)
+      .delete(`/api/user/${this.state._id}`)
       .then((res) => {
         console.log(res);
         console.log(res.data);
@@ -95,7 +96,7 @@ export default class CardBody extends Component {
         console.error("Error:", error);
       });
     window.location.reload(false);
-  }
+  };
 
   handleEdit(_id, e) {
     e.preventDefault();
@@ -126,7 +127,6 @@ export default class CardBody extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state._id);
     if (validateForm(this.state.errors)) {
       axios
         .put(`/api/user/${this.state._id}`, {
@@ -168,14 +168,6 @@ export default class CardBody extends Component {
                   {users.firstName} &ensp;
                   {users.lastName} &ensp;
                   {users.date}
-                  <Button
-                    className="deleteBtn"
-                    type="delete"
-                    id={users._id}
-                    onClick={(e) => this.handleDelete(users._id, e)}
-                  >
-                    X
-                  </Button>
                   <Button
                     className="editBtn"
                     type="edit"
@@ -275,6 +267,13 @@ export default class CardBody extends Component {
                 <Modal.Footer>
                   <Button type="submit" onClick={this.handleClose}>
                     Submit
+                  </Button>
+                  <Button
+                    className="deleteBtn"
+                    type="delete"
+                    onClick={this.handleDelete}
+                  >
+                    X
                   </Button>
                 </Modal.Footer>
               </Form>

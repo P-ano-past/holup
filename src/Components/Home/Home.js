@@ -11,7 +11,7 @@ export default class Home extends Component {
         <Jumbo />
         <Container id="contContainer" fluid>
           <Row id="cont1">
-            <Col className="line">
+            <Col>
               {/* 
                         There needs to be a static container that is able to display cards with first initial, last name along with the time being displayed for viewing. 
                         */}
