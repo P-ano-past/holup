@@ -85,7 +85,6 @@ export default class CardBody extends Component {
 
   handleDelete = (e) => {
     e.preventDefault();
-    console.log(this.state._id);
     axios
       .delete(`/api/user/${this.state._id}`)
       .then((res) => {
@@ -100,7 +99,6 @@ export default class CardBody extends Component {
 
   handleEdit(_id, e) {
     e.preventDefault();
-    console.log(_id);
     axios
       .get(`/api/user/${_id}`)
       .then((res) => {
@@ -269,11 +267,12 @@ export default class CardBody extends Component {
                     Submit
                   </Button>
                   <Button
+                    variant="danger"
                     className="deleteBtn"
                     type="delete"
                     onClick={this.handleDelete}
                   >
-                    X
+                    <b>Delete</b>
                   </Button>
                 </Modal.Footer>
               </Form>
