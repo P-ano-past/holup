@@ -25,6 +25,8 @@
 
 .input-group {
   width: 90% !important;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .form-control {

@@ -36,6 +36,7 @@ export default class Jumbo extends Component {
       lastName: "",
       email: "",
       phone: "",
+      time: "",
       errors: {
         firstName: "",
         lastName: "",
@@ -78,11 +79,6 @@ export default class Jumbo extends Component {
     this.setState({ errors, [name]: value });
   };
 
-  handleIncrement = (event) => {
-    this.props.value = 1;
-    this.setState({ id: this.state.id + 1 });
-  };
-
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
@@ -93,6 +89,7 @@ export default class Jumbo extends Component {
           lastName: this.state.lastName,
           email: this.state.email,
           phone: this.state.phone,
+          time: this.state.time,
         })
         .then((res) => {
           console.log(res);
@@ -106,18 +103,21 @@ export default class Jumbo extends Component {
         lastName: "",
         email: "",
         phone: "",
+        time: "",
       });
     } else {
       console.error("Invalid Form");
       this.handleShow();
     }
-    window.location.reload(false);
+    // window.location.reload(false);
   };
   handleShow = (event) => {
     this.setState({ show: true });
+    console.log(this.state.time);
+    console.log(this.state);
   };
 
-  handleClose = (event) => {
+  handleClose = (event, props) => {
     this.setState({ show: false });
   };
 
@@ -133,7 +133,7 @@ export default class Jumbo extends Component {
           Please feel free to check-in and you will be notified soon!
         </p>
         <h2 className="time">
-          Current time: <Clock />
+          Current time: <Clock value={this.state.time} />
         </h2>
         <Button className="checkinBtn" onClick={this.handleShow}>
           Check-In

@@ -165,7 +165,7 @@ export default class CardBody extends Component {
                 <ListGroupItem>
                   {users.firstName} &ensp;
                   {users.lastName} &ensp;
-                  {users.date}
+                  {users.time}
                   <Button
                     className="editBtn"
                     type="edit"
