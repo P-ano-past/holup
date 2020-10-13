@@ -163,20 +163,29 @@ export default class CardBody extends Component {
             <ListGroup>
               {this.state.users.map((users) => (
                 <ListGroupItem>
-                  {users.firstName} &ensp;
-                  {users.lastName} &ensp;
-                  {users.time}
-                  <Button
-                    className="editBtn"
-                    type="edit"
-                    id={users._id}
-                    onClick={(e) => {
-                      this.handleShow();
-                      this.handleEdit(users._id, e);
-                    }}
-                  >
-                    Edit
-                  </Button>
+                  <Row>
+                    <Col className="userContent">{users.firstName}</Col>
+                    <Col className="userContent">{users.lastName}</Col>
+                    <Col className="userContent">
+                      <b>{users.time}</b>
+                    </Col>
+                    <Col>
+                      <Button
+                        className="editBtn"
+                        type="edit"
+                        id={users._id}
+                        onClick={(e) => {
+                          this.handleShow();
+                          this.handleEdit(users._id, e);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </Col>
+                    {/* &ensp;
+                   &ensp;
+                   */}
+                  </Row>
                 </ListGroupItem>
               ))}
             </ListGroup>

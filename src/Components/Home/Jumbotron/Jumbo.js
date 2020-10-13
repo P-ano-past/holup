@@ -30,13 +30,18 @@ const validateForm = (errors) => {
 
 export default class Jumbo extends Component {
   constructor(props) {
+    let getTime = new Date(),
+      hours = getTime.getHours() % 12 || 12,
+      mins = getTime.getMinutes(),
+      time = hours + ":" + mins;
+
     super(props);
     this.state = {
       firstName: "",
       lastName: "",
       email: "",
       phone: "",
-      time: "",
+      time: time,
       errors: {
         firstName: "",
         lastName: "",
@@ -81,7 +86,7 @@ export default class Jumbo extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    console.log(this.state.time);
     if (validateForm(this.state.errors)) {
       axios
         .post("/api/user", {
@@ -109,7 +114,7 @@ export default class Jumbo extends Component {
       console.error("Invalid Form");
       this.handleShow();
     }
-    // window.location.reload(false);
+    window.location.reload(false);
   };
   handleShow = (event) => {
     this.setState({ show: true });

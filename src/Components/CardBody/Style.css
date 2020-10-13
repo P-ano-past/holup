@@ -13,4 +13,11 @@
   width: 100%;
   flex: 1;
   overflow-y: scroll;
+  text-align: left;
+}
+
+.userContent {
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 10px;
 }
