@@ -160,6 +160,21 @@ export default class CardBody extends Component {
       <>
         <Card>
           <Card.Body scrollable={true}>
+            <Row>
+              {/* <Col className="align"></Col> */}
+              <Col xs={3} className="contHead">
+                Firstname:
+              </Col>
+              <Col xs={3} className="contHead">
+                Lastname:
+              </Col>
+              <Col xs={3} className="contHead">
+                Check-in time:
+              </Col>
+              <Col xs={3} className="contHead">
+                Elapsed time:
+              </Col>
+            </Row>
             <ListGroup>
               {this.state.users.map((users) => (
                 <ListGroupItem>

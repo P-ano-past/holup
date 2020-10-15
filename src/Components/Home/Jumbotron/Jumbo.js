@@ -118,8 +118,6 @@ export default class Jumbo extends Component {
   };
   handleShow = (event) => {
     this.setState({ show: true });
-    console.log(this.state.time);
-    console.log(this.state);
   };
 
   handleClose = (event, props) => {
