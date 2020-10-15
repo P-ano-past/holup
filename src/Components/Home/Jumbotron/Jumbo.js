@@ -38,6 +38,7 @@ export default class Jumbo extends Component {
     super(props);
     this.state = {
       firstName: "",
+      firstInitial: "",
       lastName: "",
       email: "",
       phone: "",
@@ -56,6 +57,8 @@ export default class Jumbo extends Component {
     event.preventDefault();
     const { name, value } = event.target;
     let errors = this.state.errors;
+
+    // console.log(this.state.firstName);
 
     switch (name) {
       case "firstName":
@@ -86,12 +89,26 @@ export default class Jumbo extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.time);
+
+    console.log(this.state.firstInitial);
+
+    console.log(this.state.firstName);
+    console.log(
+      "lastname: " +
+        this.state.lastName.charAt(0).toUpperCase() +
+        this.state.lastName.slice(1)
+    );
+
     if (validateForm(this.state.errors)) {
       axios
         .post("/api/user", {
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
+          firstName:
+            this.state.firstName.charAt(0).toUpperCase() +
+            this.state.firstName.slice(1),
+          firstInitial: this.state.firstName.charAt(0).toUpperCase(),
+          lastName:
+            this.state.lastName.charAt(0).toUpperCase() +
+            this.state.lastName.slice(1),
           email: this.state.email,
           phone: this.state.phone,
           time: this.state.time,
@@ -105,6 +122,7 @@ export default class Jumbo extends Component {
 
       this.setState({
         firstName: "",
+        firstInitial: "",
         lastName: "",
         email: "",
         phone: "",
@@ -114,7 +132,7 @@ export default class Jumbo extends Component {
       console.error("Invalid Form");
       this.handleShow();
     }
-    window.location.reload(false);
+    // window.location.reload(false);
   };
   handleShow = (event) => {
     this.setState({ show: true });

@@ -179,7 +179,7 @@ export default class CardBody extends Component {
               {this.state.users.map((users) => (
                 <ListGroupItem>
                   <Row>
-                    <Col className="userContent">{users.firstName}</Col>
+                    <Col className="userContent">{users.firstInitial}</Col>
                     <Col className="userContent">{users.lastName}</Col>
                     <Col className="userContent">
                       <b>{users.time}</b>
