@@ -105,7 +105,7 @@ export default class Jumbo extends Component {
           firstName:
             this.state.firstName.charAt(0).toUpperCase() +
             this.state.firstName.slice(1),
-          firstInitial: this.state.firstName.charAt(0).toUpperCase(),
+          firstInitial: this.state.firstName.charAt(0).toUpperCase() + ".",
           lastName:
             this.state.lastName.charAt(0).toUpperCase() +
             this.state.lastName.slice(1),
@@ -132,7 +132,7 @@ export default class Jumbo extends Component {
       console.error("Invalid Form");
       this.handleShow();
     }
-    // window.location.reload(false);
+    window.location.reload(false);
   };
   handleShow = (event) => {
     this.setState({ show: true });
