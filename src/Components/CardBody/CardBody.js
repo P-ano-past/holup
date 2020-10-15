@@ -162,7 +162,7 @@ export default class CardBody extends Component {
           <Card.Body scrollable={true}>
             <Row>
               {/* <Col className="align"></Col> */}
-              <Col xs={3} className="contHead">
+              <Col xs={2} className="contHead">
                 Firstname:
               </Col>
               <Col xs={3} className="contHead">
@@ -179,7 +179,9 @@ export default class CardBody extends Component {
               {this.state.users.map((users) => (
                 <ListGroupItem>
                   <Row>
-                    <Col className="userContent">{users.firstInitial}</Col>
+                    <Col className="userContent" xs={2}>
+                      {users.firstInitial}
+                    </Col>
                     <Col className="userContent">{users.lastName}</Col>
                     <Col className="userContent">
                       <b>{users.time}</b>
