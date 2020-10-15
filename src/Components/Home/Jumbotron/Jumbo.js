@@ -32,7 +32,7 @@ export default class Jumbo extends Component {
   constructor(props) {
     let getTime = new Date(),
       hours = getTime.getHours() % 12 || 12,
-      mins = getTime.getMinutes(),
+      mins = getTime.getMinutes() < 10 ? "0" : "" + getTime.getMinutes(),
       time = hours + ":" + mins;
 
     super(props);

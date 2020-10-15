@@ -163,10 +163,10 @@ export default class CardBody extends Component {
             <Row>
               {/* <Col className="align"></Col> */}
               <Col xs={2} className="contHead">
-                Firstname:
+                First name:
               </Col>
               <Col xs={3} className="contHead">
-                Lastname:
+                Last name:
               </Col>
               <Col xs={3} className="contHead">
                 Check-in time:
