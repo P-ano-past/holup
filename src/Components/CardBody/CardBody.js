@@ -22,6 +22,7 @@ const validEmailRegex = RegExp(
 const validPhoneRegex = RegExp(
   /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
 );
+
 const validateForm = (errors) => {
   let valid = true;
   Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
@@ -31,6 +32,7 @@ const validateForm = (errors) => {
 export default class CardBody extends Component {
   state = {
     users: [],
+    timers: "bloop",
     errors: {
       firstName: "",
       lastName: "",
@@ -76,6 +78,7 @@ export default class CardBody extends Component {
       .get("/api/user")
       .then((res) => {
         const users = res.data;
+        console.log(users);
         this.setState({ users });
       })
       .catch((error) => {
@@ -89,7 +92,6 @@ export default class CardBody extends Component {
       .delete(`/api/user/${this.state._id}`)
       .then((res) => {
         console.log(res);
-        console.log(res.data);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -98,6 +100,7 @@ export default class CardBody extends Component {
   };
 
   handleEdit(_id, e) {
+    console.log(this.state);
     e.preventDefault();
     axios
       .get(`/api/user/${_id}`)
@@ -107,6 +110,7 @@ export default class CardBody extends Component {
           lastName: res.data.lastName,
           email: res.data.email,
           phone: res.data.phone,
+          timers: res.data.timers,
           _id: res.data._id,
         });
       })
@@ -165,10 +169,10 @@ export default class CardBody extends Component {
               <Col xs={2} className="contHead">
                 First name:
               </Col>
-              <Col xs={3} className="contHead">
+              <Col xs={2} className="contHead">
                 Last name:
               </Col>
-              <Col xs={3} className="contHead">
+              <Col xs={2} className="contHead">
                 Check-in time:
               </Col>
               <Col xs={3} className="contHead">
@@ -185,6 +189,10 @@ export default class CardBody extends Component {
                     <Col className="userContent">{users.lastName}</Col>
                     <Col className="userContent">
                       <b>{users.time}</b>
+                    </Col>
+                    <Col className="userContent">
+                      <b>{this.state.timers}</b>
+                      {/* increment with a ticker and set state. */}
                     </Col>
                     <Col>
                       <Button
