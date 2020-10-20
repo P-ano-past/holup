@@ -1,0 +1,22 @@
+.regCont {
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* .col {
+  border: 1px solid black;
+} */
+
+.regTitle {
+  text-align: center;
+}
+
+.regText {
+  text-align: center;
+  margin: 10px;
+}
+
+.regInput {
+  margin: 10px;
+}

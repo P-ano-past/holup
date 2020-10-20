@@ -1,3 +1,8 @@
 .color-nav {
   background-color: #2b3a67;
 }
+
+.navbtn {
+  float: right;
+  border-radius: 24px;
+}

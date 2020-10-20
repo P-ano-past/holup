@@ -90,15 +90,6 @@ export default class Jumbo extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(this.state.firstInitial);
-
-    console.log(this.state.firstName);
-    console.log(
-      "lastname: " +
-        this.state.lastName.charAt(0).toUpperCase() +
-        this.state.lastName.slice(1)
-    );
-
     if (validateForm(this.state.errors)) {
       axios
         .post("/api/user", {

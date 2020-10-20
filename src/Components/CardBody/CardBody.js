@@ -189,6 +189,7 @@ export default class CardBody extends Component {
                     <Col className="userContent">{users.lastName}</Col>
                     <Col className="userContent">
                       <b>{users.time}</b>
+                      {/* <b>{users.date}</b> */}
                     </Col>
                     <Col className="userContent">
                       <b>{this.state.timers}</b>
