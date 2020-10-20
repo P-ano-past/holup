@@ -22,7 +22,7 @@ export default class Registration extends Component {
       <Container className="regCont">
         <Row>
           <Col />
-          <Col className="regTitle"> REGISTER, YA NUT!</Col>
+          <Col className="regTitle">Register</Col>
           <Col />
         </Row>
         <Row>
