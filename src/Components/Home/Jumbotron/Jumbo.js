@@ -138,7 +138,7 @@ export default class Jumbo extends Component {
     return (
       <Jumbotron>
         <h1 className="display-4">
-          | <b>Q</b> | The queuing app
+          | <b>Q</b> | The Queuing App
         </h1>
         <hr className="my-4" />
         <p className="lead">
