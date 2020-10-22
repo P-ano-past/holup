@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   companyName: { type: String },
+  companyPassword: { type: String },
   companyEmail: { type: String },
-  conpanyPhone: { type: String },
+  companyPhone: { type: String },
   date: { type: Date, default: Date.now },
   queue: {
     firstName: { type: String },

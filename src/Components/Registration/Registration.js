@@ -79,16 +79,10 @@ export default class Registration extends Component {
     if (validateForm(this.state.errors)) {
       axios
         .post("/api/user", {
-          firstName:
-            this.state.firstName.charAt(0).toUpperCase() +
-            this.state.firstName.slice(1),
-          firstInitial: this.state.firstName.charAt(0).toUpperCase() + ".",
-          lastName:
-            this.state.lastName.charAt(0).toUpperCase() +
-            this.state.lastName.slice(1),
-          email: this.state.email,
-          phone: this.state.phone,
-          time: this.state.time,
+          companyName: this.state.companyName,
+          companyPassword: this.state.companyPassword,
+          companyEmail: this.state.companyEmail,
+          companyPhone: this.state.companyPhone,
         })
         .then((res) => {
           console.log(res);
@@ -195,7 +189,9 @@ export default class Registration extends Component {
                   <Button href="/Home">Cancel</Button>
                 </Col>
                 <Col>
-                  <Button type="submit">Submit</Button>
+                  <Button type="submit" onClick={this.handleSubmit}>
+                    Submit
+                  </Button>
                 </Col>
                 <Col></Col>
               </Row>
