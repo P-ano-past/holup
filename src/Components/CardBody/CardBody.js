@@ -78,6 +78,7 @@ export default class CardBody extends Component {
       .get("/api/user")
       .then((res) => {
         const users = res.data;
+        console.log(res);
         console.log(users);
         this.setState({ users });
       })

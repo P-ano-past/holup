@@ -101,7 +101,7 @@ export default class Registration extends Component {
       console.error("Invalid Form");
       this.handleShow();
     }
-    window.location.reload(false);
+    // window.location.reload(false);
   };
 
   render() {
@@ -110,7 +110,9 @@ export default class Registration extends Component {
       <Container className="regCont">
         <Row>
           <Col />
-          <Col className="regTitle">Register</Col>
+          <Col className="regTitle">
+            <h2>Register</h2>
+          </Col>
           <Col />
         </Row>
         <Row>
@@ -133,6 +135,7 @@ export default class Registration extends Component {
                   <span className="error">{errors.companyName}</span>
                 )}
               </InputGroup>
+              <br />
               <InputGroup size="lg">
                 <Col className="regText">Password:</Col>
                 <FormControl
@@ -149,6 +152,7 @@ export default class Registration extends Component {
                   <span className="error">{errors.companyPassword}</span>
                 )}
               </InputGroup>
+              <br />
               <InputGroup size="lg">
                 <Col className="regText">Email:</Col>
                 <FormControl
@@ -166,6 +170,7 @@ export default class Registration extends Component {
                   <span className="error">{errors.companyEmail}</span>
                 )}
               </InputGroup>
+              <br />
               <InputGroup size="lg">
                 <Col className="regText">Phone:</Col>
                 <FormControl
@@ -183,6 +188,7 @@ export default class Registration extends Component {
                   <span className="error">{errors.companyPhone}</span>
                 )}
               </InputGroup>
+              <br />
               <Row>
                 <Col></Col>
                 <Col>

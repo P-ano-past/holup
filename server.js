@@ -32,7 +32,7 @@ mongoose
     "mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/Queue?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
   )
-  .then(() => console.log("Connected to MongoDB Atlas on " + PORT))
+  .then(() => console.log("Loaded on: localhost:" + PORT))
   .catch((err) => console.log(err));
 
 //renders home page

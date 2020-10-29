@@ -1,6 +1,9 @@
 .color-nav {
   background-color: #2b3a67;
 }
+.navbar {
+  z-index: 10;
+}
 
 .navbtn {
   float: right;
