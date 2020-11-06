@@ -1,14 +1,16 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Style.css";
 
 export default class DashNav extends Component {
   render() {
     return (
       <div class="sidenav">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <Link to="/Dashboard">Dashboard</Link>
+        <Link to="/Queue">Queue</Link>
+        <Link href="#">Services</Link>
+        <Link href="#">Clients</Link>
+        <Link href="#">Contact</Link>
       </div>
     );
   }

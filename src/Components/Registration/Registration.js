@@ -9,6 +9,7 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import { Redirect, useHistory } from "react-router-dom";
 import "./Style.css";
 
 const validEmailRegex = RegExp(
@@ -29,6 +30,8 @@ export default class Registration extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      navigate: false,
+      referrer: null,
       companyName: "",
       companyPassword: "",
       companyEmail: "",
@@ -101,10 +104,17 @@ export default class Registration extends Component {
       console.error("Invalid Form");
       this.handleShow();
     }
+
     // window.location.reload(false);
   };
 
+  handleRedirect = (event) => {
+    this.setState({ referrer: "/dashboard" });
+  };
+
   render() {
+    const { referrer } = this.state;
+    if (referrer) return <Redirect to={referrer} />;
     const { errors } = this.state;
     return (
       <Container className="regCont">
@@ -195,7 +205,7 @@ export default class Registration extends Component {
                   <Button href="/Home">Cancel</Button>
                 </Col>
                 <Col>
-                  <Button type="submit" onClick={this.handleSubmit}>
+                  <Button type="submit" onClick={this.handleRedirect}>
                     Submit
                   </Button>
                 </Col>

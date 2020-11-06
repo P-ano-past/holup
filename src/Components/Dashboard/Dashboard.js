@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+// import { useParams } from "react-router-dom";
 import DashNav from "./DashNav/DashNav";
 import "./Style.css";
 
 export default class Dashboard extends Component {
   render() {
+    // const { id } = this.props.match.params;
     return (
       <>
         <DashNav />
