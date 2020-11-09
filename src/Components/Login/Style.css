@@ -1,0 +1,22 @@
+.signInCont {
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#signInText {
+  text-align: center;
+}
+
+.col {
+  border: 1px solid black;
+}
+
+.signInInput {
+  text-align: center;
+  margin: 10px;
+}
+
+.regInput {
+  margin: 10px;
+}

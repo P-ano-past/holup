@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  companyName: { type: String },
-  companyPassword: { type: String },
-  companyEmail: { type: String },
-  companyPhone: { type: String },
+  username: { type: String },
+  userPassword: { type: String },
+  userEmail: { type: String },
+  userPhone: { type: String },
   date: { type: Date, default: Date.now },
   queue: {
     firstName: { type: String },

@@ -9,7 +9,7 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./Style.css";
 
 const validEmailRegex = RegExp(
@@ -32,15 +32,15 @@ export default class Registration extends Component {
     this.state = {
       navigate: false,
       referrer: null,
-      companyName: "",
-      companyPassword: "",
-      companyEmail: "",
-      companyPhone: "",
+      username: "",
+      userPassword: "",
+      userEmail: "",
+      userPhone: "",
       errors: {
-        companyName: "",
-        companyPassword: "",
-        companyEmail: "",
-        companyPhone: "",
+        username: "",
+        userPassword: "",
+        userEmail: "",
+        userPhone: "",
       },
     };
   }
@@ -51,24 +51,24 @@ export default class Registration extends Component {
     let errors = this.state.errors;
 
     switch (name) {
-      case "companyName":
-        errors.companyName =
+      case "username":
+        errors.username =
           value.length < 3 || ""
-            ? "Company name must be at least 3 characters long!"
+            ? "Username must be at least 3 characters long!"
             : "";
         break;
-      case "companyPassword":
-        errors.companyPassword =
+      case "userPassword":
+        errors.userPassword =
           value.length < 3 || ""
             ? "Password must be at least 3 characters long!"
             : "";
         break;
-      case "companyEmail":
-        errors.companyEmail =
+      case "userEmail":
+        errors.userEmail =
           validEmailRegex.test(value) || "" ? "" : "Email is not valid!";
         break;
-      case "companyPhone":
-        errors.companyPhone =
+      case "userPhone":
+        errors.userPhone =
           validPhoneRegex.test(value) || "" ? "" : "Phone number is not valid!";
         break;
       default:
@@ -82,10 +82,10 @@ export default class Registration extends Component {
     if (validateForm(this.state.errors)) {
       axios
         .post("/api/user", {
-          companyName: this.state.companyName,
-          companyPassword: this.state.companyPassword,
-          companyEmail: this.state.companyEmail,
-          companyPhone: this.state.companyPhone,
+          username: this.state.username,
+          userPassword: this.state.userPassword,
+          userEmail: this.state.userEmail,
+          userPhone: this.state.userPhone,
         })
         .then((res) => {
           console.log(res);
@@ -95,10 +95,10 @@ export default class Registration extends Component {
         });
 
       this.setState({
-        companyName: "",
-        companyPassword: "",
-        companyEmail: "",
-        companyPhone: "",
+        username: "",
+        userPassword: "",
+        userEmail: "",
+        userPhone: "",
       });
     } else {
       console.error("Invalid Form");
@@ -130,19 +130,19 @@ export default class Registration extends Component {
             <Form onSubmit={this.handleSubmit} noValidate>
               <br />
               <InputGroup size="lg">
-                <Col className="regText">Company Name:</Col>
+                <Col className="regText">Username:</Col>
                 <FormControl
                   className="regInput"
                   type="text"
-                  name="companyName"
+                  name="username"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
-                  value={this.state.companyName}
+                  value={this.state.username}
                   onChange={this.handleChange}
                   noValidate
                 />
-                {errors.companyName.length > 0 && (
-                  <span className="error">{errors.companyName}</span>
+                {errors.username.length > 0 && (
+                  <span className="error">{errors.username}</span>
                 )}
               </InputGroup>
               <br />
@@ -151,15 +151,15 @@ export default class Registration extends Component {
                 <FormControl
                   className="regInput"
                   type="text"
-                  name="companyPassword"
+                  name="userPassword"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
-                  value={this.state.companyPassword}
+                  value={this.state.userPassword}
                   onChange={this.handleChange}
                   noValidate
                 />
-                {errors.companyPassword.length > 0 && (
-                  <span className="error">{errors.companyPassword}</span>
+                {errors.userPassword.length > 0 && (
+                  <span className="error">{errors.userPassword}</span>
                 )}
               </InputGroup>
               <br />
@@ -168,16 +168,16 @@ export default class Registration extends Component {
                 <FormControl
                   className="regInput"
                   type="text"
-                  name="companyEmail"
+                  name="userEmail"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
-                  value={this.state.companyEmail}
+                  value={this.state.userEmail}
                   onChange={this.handleChange}
                   pattern=".+@globex.com"
                   noValidate
                 />
-                {errors.companyEmail.length > 0 && (
-                  <span className="error">{errors.companyEmail}</span>
+                {errors.userEmail.length > 0 && (
+                  <span className="error">{errors.userEmail}</span>
                 )}
               </InputGroup>
               <br />
@@ -186,21 +186,21 @@ export default class Registration extends Component {
                 <FormControl
                   className="regInput"
                   type="text"
-                  name="companyPhone"
+                  name="userPhone"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
-                  value={this.state.companyPhone}
+                  value={this.state.userPhone}
                   onChange={this.handleChange}
                   pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                   noValidate
                 />
-                {errors.companyPhone.length > 0 && (
-                  <span className="error">{errors.companyPhone}</span>
+                {errors.userPhone.length > 0 && (
+                  <span className="error">{errors.userPhone}</span>
                 )}
               </InputGroup>
               <br />
               <Row>
-                <Col></Col>
+                <Col />
                 <Col>
                   <Button href="/Home">Cancel</Button>
                 </Col>
@@ -209,7 +209,7 @@ export default class Registration extends Component {
                     Submit
                   </Button>
                 </Col>
-                <Col></Col>
+                <Col />
               </Row>
             </Form>
           </Col>
