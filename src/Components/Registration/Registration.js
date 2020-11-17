@@ -108,9 +108,9 @@ export default class Registration extends Component {
     // window.location.reload(false);
   };
 
-  handleRedirect = (event) => {
-    this.setState({ referrer: "/dashboard" });
-  };
+  // handleRedirect = (event) => {
+  //   this.setState({ referrer: "/dashboard" });
+  // };
 
   render() {
     const { referrer } = this.state;
@@ -205,7 +205,7 @@ export default class Registration extends Component {
                   <Button href="/Home">Cancel</Button>
                 </Col>
                 <Col>
-                  <Button type="submit" onClick={this.handleRedirect}>
+                  <Button type="submit" onClick={this.handleSubmit}>
                     Submit
                   </Button>
                 </Col>

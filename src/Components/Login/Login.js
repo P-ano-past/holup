@@ -8,9 +8,52 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import axios from "axios";
+
 import "./Style.css";
 
 export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+    };
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleUsernameChange(event) {
+    this.setState({
+      username: event.target.value,
+    });
+  }
+
+  handlePasswordChange(event) {
+    this.setState({
+      password: event.target.value,
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+    axios
+      .post(`/api/user/login`, {
+        data: {
+          username: this.state.username,
+          password: this.state.password,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <Container className="signInCont">
@@ -23,7 +66,7 @@ export default class Login extends Component {
         </Row>
         <Row>
           <Col>
-            <Form>
+            <Form onSubmit={this.handleSubmit} noValidate>
               <br />
               <InputGroup size="lg">
                 <Col className="regText">Username:</Col>
@@ -33,9 +76,9 @@ export default class Login extends Component {
                   name="Username"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
-                  // value={""}
-                  // onChange={""}
-                  NoValidate
+                  value={this.state.username}
+                  onChange={this.handleUsernameChange}
+                  noValidate
                 />
               </InputGroup>
               <br />
@@ -47,9 +90,9 @@ export default class Login extends Component {
                   name="Password"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
-                  // value={""}
-                  // onChange={""}
-                  NoValidate
+                  value={this.state.password}
+                  onChange={this.handlePasswordChange}
+                  noValidate
                 />
               </InputGroup>
               <br />
@@ -62,7 +105,7 @@ export default class Login extends Component {
             <Button href="/Home">Cancel</Button>
           </Col>
           <Col>
-            <Button type="submit" onClick={this.handleRedirect}>
+            <Button type="submit" onClick={this.handleSubmit}>
               Submit
             </Button>
           </Col>
@@ -72,3 +115,5 @@ export default class Login extends Component {
     );
   }
 }
+// if status 200 REDIRECT TO DASHBOARD.
+// if status 200 match password.

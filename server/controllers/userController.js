@@ -12,6 +12,7 @@ module.exports = {
     db.User.findById(req.params.id)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
+    console.log("findbyID triggered");
   },
   createUser: function ({ body }, res) {
     db.User.create(body).then((dbModel) => res.json(dbModel));
@@ -27,6 +28,19 @@ module.exports = {
     db.User.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  login: function (req, res) {
+    db.User.findOne({
+      username: req.body.data.username,
+      // password: req.body.data.password,
+    })
+      .then((dbModel) => {
+        res.json(dbModel);
+        console.log("find by username", dbModel);
+        console.log("body", req.body.data);
+        console.log("params", req.params);
+      })
       .catch((err) => res.status(422).json(err));
   },
 };
