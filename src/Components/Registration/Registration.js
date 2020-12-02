@@ -51,12 +51,6 @@ export default class Registration extends Component {
     let errors = this.state.errors;
 
     switch (name) {
-      case "username":
-        errors.username =
-          value.length < 3 || ""
-            ? "Username must be at least 3 characters long!"
-            : "";
-        break;
       case "userPassword":
         errors.userPassword =
           value.length < 3 || ""
@@ -76,9 +70,28 @@ export default class Registration extends Component {
     }
     this.setState({ errors, [name]: value });
   };
+
+  handleUserChange = (event) => {
+    const { name, value } = event.target;
+    let errors = this.state.errors;
+
+    axios.post("/api/username");
+
+    switch (name) {
+      case "username":
+        errors.username =
+          value.length < 3 || ""
+            ? "Username must be at least 3 characters long!"
+            : "";
+        break;
+      default:
+        break;
+    }
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("submit clicked");
+
     if (validateForm(this.state.errors)) {
       axios
         .post("/api/user", {
@@ -115,7 +128,9 @@ export default class Registration extends Component {
   render() {
     const { referrer } = this.state;
     if (referrer) return <Redirect to={referrer} />;
+
     const { errors } = this.state;
+
     return (
       <Container className="regCont">
         <Row>
@@ -138,7 +153,8 @@ export default class Registration extends Component {
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
                   value={this.state.username}
-                  onChange={this.handleChange}
+                  onChange={this.handleUserChange}
+                  autocomplete="username"
                   noValidate
                 />
                 {errors.username.length > 0 && (
@@ -150,11 +166,12 @@ export default class Registration extends Component {
                 <Col className="regText">Password:</Col>
                 <FormControl
                   className="regInput"
-                  type="text"
+                  type="password"
                   name="userPassword"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
                   value={this.state.userPassword}
+                  autocomplete="current-password"
                   onChange={this.handleChange}
                   noValidate
                 />
@@ -171,6 +188,7 @@ export default class Registration extends Component {
                   name="userEmail"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
+                  autocomplete="email"
                   value={this.state.userEmail}
                   onChange={this.handleChange}
                   pattern=".+@globex.com"
@@ -189,6 +207,7 @@ export default class Registration extends Component {
                   name="userPhone"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
+                  autocomplete="phone"
                   value={this.state.userPhone}
                   onChange={this.handleChange}
                   pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"

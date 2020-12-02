@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import bcrypt from "bcryptjs";
 import {
   Container,
   Row,
@@ -17,7 +18,7 @@ export default class Login extends Component {
     super(props);
     this.state = {
       username: "",
-      password: "",
+      userPassword: "",
     };
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -32,18 +33,17 @@ export default class Login extends Component {
 
   handlePasswordChange(event) {
     this.setState({
-      password: event.target.value,
+      userPassword: event.target.value,
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
     axios
       .post(`/api/user/login`, {
         data: {
           username: this.state.username,
-          password: this.state.password,
+          userPassword: this.state.userPassword,
         },
       })
       .then((res) => {
@@ -86,11 +86,11 @@ export default class Login extends Component {
                 <Col className="regText">Password:</Col>
                 <FormControl
                   className="signInInput"
-                  type="text"
+                  type="password"
                   name="Password"
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
-                  value={this.state.password}
+                  value={this.state.userPassword}
                   onChange={this.handlePasswordChange}
                   noValidate
                 />
