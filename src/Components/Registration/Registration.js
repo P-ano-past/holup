@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import "./Style.css";
+import { Next } from "react-bootstrap/esm/PageItem";
 
 const validEmailRegex = RegExp(
   // eslint-disable-next-line
@@ -51,6 +52,12 @@ export default class Registration extends Component {
     let errors = this.state.errors;
 
     switch (name) {
+      case "username":
+        errors.username =
+          value.length < 3 || ""
+            ? "Username must be at least 3 characters long!"
+            : "";
+        break;
       case "userPassword":
         errors.userPassword =
           value.length < 3 || ""
@@ -71,24 +78,6 @@ export default class Registration extends Component {
     this.setState({ errors, [name]: value });
   };
 
-  handleUserChange = (event) => {
-    const { name, value } = event.target;
-    let errors = this.state.errors;
-
-    axios.post("/api/username");
-
-    switch (name) {
-      case "username":
-        errors.username =
-          value.length < 3 || ""
-            ? "Username must be at least 3 characters long!"
-            : "";
-        break;
-      default:
-        break;
-    }
-  };
-
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -101,8 +90,9 @@ export default class Registration extends Component {
           userPhone: this.state.userPhone,
         })
         .then((res) => {
-          console.log(res);
+          res.send({ payload: "", message: "Success!" });
         })
+
         .catch((err) => {
           console.log(err);
         });
@@ -153,7 +143,7 @@ export default class Registration extends Component {
                   aria-label="Large"
                   aria-describedby="inputGroup-sizing-sm"
                   value={this.state.username}
-                  onChange={this.handleUserChange}
+                  onChange={this.handleChange}
                   autocomplete="username"
                   noValidate
                 />
