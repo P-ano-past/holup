@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 // import { useParams } from "react-router-dom";
 import DashNav from "./DashNav/DashNav";
+import { UserConsumer } from "../UserContext/UserContext";
 import "./Style.css";
 
 export default class Dashboard extends Component {
@@ -12,6 +13,13 @@ export default class Dashboard extends Component {
         <DashNav />
         <Container>
           <Row>
+            <Col>
+              <UserConsumer>
+                {(props) => {
+                  return <h2>Hello there {props.name} !</h2>;
+                }}
+              </UserConsumer>
+            </Col>
             <Col>This is the Dashboard</Col>
           </Row>
         </Container>

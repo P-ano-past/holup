@@ -14,16 +14,16 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
     console.log("findbyID triggered");
   },
-  createUser: function ({ body }, res) {
+  createUser: function ({ body }, res, next) {
     const bcrypt = require("bcryptjs");
 
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(body.userPassword, salt, function (err, hash) {
         body.userPassword = hash;
         db.User.create(body)
-          .then((dbModel) => res.status(res.status(200), dbModel))
-          .catch((err) => res.status(err, 500));
-        //body.userPassword now posts encrypted password into mongo.
+          .then(console.log(body), (dbModel) => res.json(dbModel))
+          .catch((err) => res.status(422).json(err));
+        next();
       });
     });
     // .then(res.status(200))

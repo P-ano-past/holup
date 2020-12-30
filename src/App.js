@@ -7,13 +7,15 @@ import Queue from "./Components/Queue/Queue";
 import Registration from "./Components/Registration/Registration";
 import Navigation from "./Components/Navbar/Navigation";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import { UserProvider } from "./Components/UserContext/UserContext";
+import { UserProvider } from "../src/Components/UserContext/UserContext";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
+  const user = { name: "bloopie", loggedIn: true };
+
   return (
     <div className="App">
-      <UserProvider>
+      <UserProvider value={user}>
         <Navigation fixed="top" />
 
         <Switch>

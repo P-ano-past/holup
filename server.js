@@ -1,5 +1,6 @@
 const express = require("express");
 // const favicon = require('express-favicon');
+require("dotenv").config();
 const cors = require("cors");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
@@ -29,7 +30,7 @@ app.use(routes);
 
 mongoose
   .connect(
-    "mongodb+srv://root:toor@holupcluster0.qlsfi.mongodb.net/Queue?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@${process.env.DB_URL}?retryWrites=true&w=majority`,
     {
       // autoIndex: true,
       useNewUrlParser: true,

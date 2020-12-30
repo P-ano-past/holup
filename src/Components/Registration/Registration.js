@@ -11,7 +11,6 @@ import {
 } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import "./Style.css";
-import { Next } from "react-bootstrap/esm/PageItem";
 
 const validEmailRegex = RegExp(
   // eslint-disable-next-line
@@ -21,6 +20,7 @@ const validEmailRegex = RegExp(
 const validPhoneRegex = RegExp(
   /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
 );
+
 const validateForm = (errors) => {
   let valid = true;
   Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
@@ -89,10 +89,9 @@ export default class Registration extends Component {
           userEmail: this.state.userEmail,
           userPhone: this.state.userPhone,
         })
-        .then((res) => {
-          res.send({ payload: "", message: "Success!" });
+        .then((req) => {
+          console.log(req);
         })
-
         .catch((err) => {
           console.log(err);
         });
@@ -144,7 +143,7 @@ export default class Registration extends Component {
                   aria-describedby="inputGroup-sizing-sm"
                   value={this.state.username}
                   onChange={this.handleChange}
-                  autocomplete="username"
+                  autoComplete="username"
                   noValidate
                 />
                 {errors.username.length > 0 && (
