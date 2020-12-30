@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
-import { UserConsumer } from "../UserContext/UserContext";
 import "./Style.css";
 
 export default class Navigation extends Component {
@@ -29,11 +28,7 @@ export default class Navigation extends Component {
         >
           Register
         </Button>
-        <UserConsumer>
-          {(props) => {
-            return <h2>{props.name}</h2>;
-          }}
-        </UserConsumer>
+      
       </Navbar>
     );
   }

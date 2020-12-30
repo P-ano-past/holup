@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 // import { useParams } from "react-router-dom";
 import DashNav from "./DashNav/DashNav";
-import { UserConsumer } from "../UserContext/UserContext";
+import { UserConsumer } from "../../Utils/UserContext/UsernameContext";
 import "./Style.css";
 
 export default class Dashboard extends Component {
